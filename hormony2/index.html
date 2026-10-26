@@ -22,7 +22,6 @@
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1646809243653703');
 fbq('track','PageView');
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="tg.pulse.is"]');if(a&&window.fbq)fbq('track','Lead');},true);
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1646809243653703&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- End Meta Pixel -->
@@ -861,7 +860,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
         <div class="frt-hero__cta frt-rise frt-rise--4">
           <a class="frt-btn" href="https://tg.pulse.is/snizhana_strokova_bot?start=6adb36a9e704a6ac6f09a819&amp;2-3_11=target" target="_blank" rel="noopener"><i>Зареєструватись</i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h14"></path><path d="m12.5 6 6 6-6 6"></path></svg></a>
           <div class="frt-hero__notes">
-            <p class="frt-hero__note">Реєстрація без збору даних, одразу потрапляєте в Telegram bot і отримуєте бонус</p>
+            <p class="frt-hero__note">Зареєструйтесь і отримайте бонус</p>
             <p class="frt-hero__more frt-gift"><span class="frt-gift__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg></span><span>Після реєстрації ви отримаєте <b>Тест-діагностику «В&nbsp;якому стані ваші гормони?»</b></span></p>
           </div>
         </div>
@@ -1347,6 +1346,82 @@ var IMG={"review-01":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53
     if(Math.abs(d) > 45) show(idx + (d < 0 ? 1 : -1));
     lx = null;
   }, {passive:true});
+})();
+</script>
+
+<!-- ---------- Реєстрація: пошта + згода → сторінка вдячності ---------- -->
+<style>
+.rg-ov{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(42,28,34,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.rg-ov.rg-on{display:flex}
+.rg-box{position:relative;width:100%;max-width:440px;max-height:calc(100dvh - 32px);overflow:auto;background:#fff;border-radius:20px;padding:28px 24px 22px;box-shadow:0 30px 70px -30px rgba(42,28,34,.6);font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:#332B2E;-webkit-font-smoothing:antialiased;text-align:left;box-sizing:border-box}
+.rg-box *{box-sizing:border-box}
+.rg-x{position:absolute;top:10px;right:10px;width:38px;height:38px;border:0;border-radius:50%;background:#F7F2F4;color:#2A1C22;font-size:22px;line-height:1;cursor:pointer}
+.rg-when{display:inline-block;margin:0 0 10px;padding:6px 12px;border-radius:999px;background:#2A1C22;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.01em}
+.rg-h{margin:0 0 6px;font-size:23px;line-height:1.15;font-weight:800;letter-spacing:-.03em;color:#2A1C22}
+.rg-sub{margin:0 0 18px;font-size:14.5px;line-height:1.4;color:#7A6E73;font-weight:500}
+.rg-lbl{display:block;margin:0 0 6px;font-size:13px;font-weight:600;color:#2A1C22}
+.rg-in{display:block;width:100%;height:52px;margin:0;padding:0 16px;border:1.5px solid #E3D4DA;border-radius:14px;background:#fff;font:500 16px/1 'Montserrat',system-ui,sans-serif;color:#2A1C22;outline:none;-webkit-appearance:none;appearance:none}
+.rg-in:focus{border-color:#6B2F47;box-shadow:0 0 0 4px rgba(107,47,71,.12)}
+.rg-ck{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;font-size:12.5px;line-height:1.4;color:#5A4E53;cursor:pointer;font-weight:500}
+.rg-ck input{flex:none;width:20px;height:20px;margin:0;accent-color:#6B2F47;cursor:pointer}
+.rg-err{min-height:18px;margin:8px 0 0;font-size:13px;font-weight:600;color:#B3261E}
+.rg-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:56px;margin:8px 0 0;border:0;border-radius:999px;background:#6B2F47;color:#fff;font:600 17px/1 'Montserrat',system-ui,sans-serif;cursor:pointer;box-shadow:0 14px 30px -14px rgba(107,47,71,.8)}
+.rg-btn:hover{background:#572539}
+.rg-btn[disabled]{opacity:.7;cursor:wait}
+.rg-gift{display:flex;align-items:center;gap:10px;margin:14px 0 0;font-size:13px;line-height:1.35;color:#5A4E53;font-weight:500}
+.rg-gift i{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:#C4724F;color:#fff;font-style:normal}
+.rg-gift svg{width:17px;height:17px}
+.rg-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+html.rg-lock,html.rg-lock body{overflow:hidden}
+</style>
+<div class="rg-ov" id="rg" role="dialog" aria-modal="true" aria-labelledby="rg-h" aria-hidden="true">
+  <form class="rg-box" id="rg-f" novalidate>
+    <button class="rg-x" type="button" id="rg-x" aria-label="Закрити">×</button>
+    <span class="rg-when">2 і 3 листопада · 19:00 за Києвом</span>
+    <h2 class="rg-h" id="rg-h">Реєстрація на вебінар</h2>
+    <p class="rg-sub">«Жіноче гормональне здоров'я». Вкажіть пошту, а на наступному кроці отримаєте бонус у Telegram-боті.</p>
+    <label class="rg-lbl" for="rg-e">Ваша електронна пошта</label>
+    <input class="rg-in" id="rg-e" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@gmail.com" required>
+    <input class="rg-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="rg-ck"><input type="checkbox" id="rg-c" name="consent" value="1"><span>Я даю згоду на зберігання та обробку моїх персональних даних з метою отримання інформаційних розсилок відповідно до чинного законодавства.</span></label>
+    <p class="rg-err" id="rg-err" role="alert"></p>
+    <button class="rg-btn" type="submit" id="rg-b">Зареєструватись <span aria-hidden="true">→</span></button>
+    <p class="rg-gift"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg></i><span>Бонус після реєстрації: тест-діагностика «В якому стані ваші гормони?»</span></p>
+  </form>
+</div>
+<script>
+(function(){
+  var EP='https://script.google.com/macros/s/AKfycbzgicJKEftPLuM010CIdXio9VZMVpbuqK9vZbqNb8GttApRWH-A7idzXie-oxwkKuhdcA/exec';
+  var PAGE='hormony2';
+  var ov=document.getElementById('rg'),f=document.getElementById('rg-f'),em=document.getElementById('rg-e'),
+      ck=document.getElementById('rg-c'),er=document.getElementById('rg-err'),bt=document.getElementById('rg-b'),last=null;
+  function open(){last=document.activeElement;ov.classList.add('rg-on');ov.setAttribute('aria-hidden','false');document.documentElement.classList.add('rg-lock');er.textContent='';setTimeout(function(){em.focus()},60);}
+  function close(){ov.classList.remove('rg-on');ov.setAttribute('aria-hidden','true');document.documentElement.classList.remove('rg-lock');if(last&&last.focus)last.focus();}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href*="tg.pulse.is"]');
+    if(!a||ov.contains(a))return;
+    e.preventDefault();e.stopPropagation();open();
+  },true);
+  document.getElementById('rg-x').addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('rg-on'))close();});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=(em.value||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){er.textContent='Перевірте, будь ласка, адресу пошти';em.focus();return;}
+    if(!ck.checked){er.textContent='Поставте, будь ласка, галочку згоди';return;}
+    if(f.website.value)return;
+    er.textContent='';bt.disabled=true;bt.firstChild.nodeValue='Зачекайте… ';
+    var q=new URLSearchParams(location.search),d=new URLSearchParams();
+    d.set('email',v);d.set('consent','1');d.set('page',PAGE);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){d.set(k,q.get(k)||'')});
+    try{if(window.fbq)fbq('track','Lead');}catch(_){}
+    var go=function(){location.href='/'+PAGE+'/dyakuyu/'+location.search;};
+    var t=setTimeout(go,3500);
+    try{
+      fetch(EP,{method:'POST',mode:'no-cors',keepalive:true,body:d}).then(function(){clearTimeout(t);go();},function(){clearTimeout(t);go();});
+    }catch(_){clearTimeout(t);go();}
+  });
 })();
 </script>
 </body>
