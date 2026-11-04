@@ -67,7 +67,7 @@ function transformProgram(seg){
   // підписи про оплату та інструкції розтермінування
   f.querySelectorAll('p,small,details,div').forEach(function(e){
     var t=e.textContent;
-    if(e.children.length<6 && (/Натискаючи кнопку оплати/.test(t) || /Як оплатити частинами/.test(t)) && !e.querySelector('section')) e.remove();
+    t=t.replace(/\s+/g,' ').trim(); if((/^Натискаючи кнопку оплати/.test(t) || /^Як оплатити частинами/.test(t)) && t.length<500) e.remove();
   });
   // елементи, що містять лише ціну
   var w=document.createTreeWalker(f,NodeFilter.SHOW_TEXT); var kill=[];
