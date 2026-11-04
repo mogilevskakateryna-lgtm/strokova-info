@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Моє здорове тіло — програма оздоровлення Сніжани Строкової</title>
+<meta name="description" content="10 тижнів, після яких ви перестанете маскувати симптоми і зрозумієте причину поганого самопочуття за своїми аналізами та симптомами.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://strokova.info/programa/">
+<link rel="canonical" href="https://strokova.info/programa/">
+<meta property="og:title" content="Моє здорове тіло — програма оздоровлення">
+<meta property="og:description" content="10 тижнів за вашими аналізами або симптомами. Старт 1 грудня 2026.">
+<meta property="og:image" content="https://strokova.info/og.jpg">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236E2E47'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EС%3C/text%3E%3C/svg%3E">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+#pg-load{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-family:Montserrat,system-ui,-apple-system,'Segoe UI',sans-serif;color:#1C2A22;text-align:center;padding:24px;box-sizing:border-box}
+#pg-load i{width:34px;height:34px;border-radius:50%;border:3px solid #DBE3D4;border-top-color:#2F6B4F;animation:pgspin .9s linear infinite}
+@keyframes pgspin{to{transform:rotate(360deg)}}
+#pg-load a{display:inline-block;padding:14px 26px;border-radius:999px;background:#2F6B4F;color:#fff;text-decoration:none;font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1646809243653703');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1646809243653703&amp;ev=PageView&amp;noscript=1"></noscript>
+<!-- End Meta Pixel -->
+
+<div id="pg-load"><i></i><noscript><p>Увімкніть JavaScript, щоб побачити сторінку, або <a href="https://t.me/snizhana_strokova">дізнайтесь деталі в Telegram</a></p></noscript></div>
+<div id="pg"></div>
+
+<script>
+/* Повна копія лендингу «Моє здорове тіло» (moje-zdorove-tilo.weblium.site) без ціни.
+   Сторінка підтягує актуальний лендинг з Weblium при кожному відкритті:
+   прибирає блоки з ціною й бронюванням, а всі кнопки продажу замінює на «Дізнатись деталі» → Telegram. */
+
+function transformProgram(seg){
+  var SRC='https://moje-zdorove-tilo.weblium.site';
+  var TG='https://t.me/snizhana_strokova';
+  var LABEL='Дізнатись деталі';
+  var tp=document.createElement('template'); tp.innerHTML=seg; var f=tp.content;
+  // head-only елементи з embed
+  f.querySelectorAll('meta,title').forEach(function(e){e.remove()});
+  // секції з ціною і бронюванням
+  ['#price','#book'].forEach(function(s){var e=f.querySelector(s); if(e) e.remove();});
+  // кнопки продажу -> «Дізнатись деталі» на Telegram; у кожній групі лишається одна
+  var sel='[data-book],[data-full],[data-parts],[data-pay]';
+  var groups=new Map();
+  f.querySelectorAll(sel).forEach(function(a){
+    var p=a.parentElement; if(!groups.has(p)) groups.set(p,[]); groups.get(p).push(a);
+  });
+  groups.forEach(function(list){
+    list.forEach(function(a,i){
+      if(i>0){a.remove();return;}
+      ['data-book','data-full','data-parts','data-pay'].forEach(function(k){a.removeAttribute(k)});
+      a.setAttribute('href',TG); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+      a.classList.remove('btn--ghost','btn--dark','dock-only-d');
+      var i2=a.querySelector('i'); if(i2) i2.textContent=LABEL; else a.textContent=LABEL;
+    });
+  });
+  // підписи про оплату та інструкції розтермінування
+  f.querySelectorAll('p,small,details,div').forEach(function(e){
+    var t=e.textContent;
+    if(e.children.length<6 && (/Натискаючи кнопку оплати/.test(t) || /Як оплатити частинами/.test(t)) && !e.querySelector('section')) e.remove();
+  });
+  // елементи, що містять лише ціну
+  var w=document.createTreeWalker(f,NodeFilter.SHOW_TEXT); var kill=[];
+  while(w.nextNode()){var n=w.currentNode; var pt=n.parentElement&&n.parentElement.tagName; if(pt==='SCRIPT'||pt==='STYLE') continue; if(/\d\s*€/.test(n.nodeValue)) kill.push(n);}
+  kill.forEach(function(n){
+    var v=n.nodeValue.replace(/\s*·\s*\d[\d\s]*€/g,'').replace(/\d[\d\s]*€/g,'').replace(/\s+$/,'');
+    if(!v.trim()){var el=n.parentElement; n.remove(); if(el && !el.textContent.trim() && !el.querySelector('img,svg')) el.remove();}
+    else n.nodeValue=v;
+  });
+  // відносні посилання -> на основний сайт
+  f.querySelectorAll('a[href^="/"]').forEach(function(a){a.setAttribute('href',SRC+a.getAttribute('href'))});
+  f.querySelectorAll('img[src^="./"],img[src^="/"]').forEach(function(im){im.setAttribute('src',SRC+'/'+im.getAttribute('src').replace(/^\.?\//,''))});
+  return f;
+}
+
+(function(){
+  var SRC='https://moje-zdorove-tilo.weblium.site/';
+  function fail(){
+    document.getElementById('pg-load').innerHTML='<p>Не вдалося завантажити сторінку.</p><a href="https://t.me/snizhana_strokova" target="_blank" rel="noopener">Дізнатись деталі</a>';
+  }
+  fetch(SRC,{cache:'no-store'}).then(function(r){if(!r.ok) throw 0; return r.text();}).then(function(t){
+    var a=t.indexOf('data-embed-id='); if(a<0) throw 0;
+    var gt=t.indexOf('>',a)+1, b=t.indexOf('<!--CONTENT_PLACEHOLDER-->',a); if(b<0) throw 0;
+    var f=transformProgram(t.slice(gt,b));
+    var scripts=[].slice.call(f.querySelectorAll('script'));
+    var holder=document.getElementById('pg');
+    scripts.forEach(function(s){s.remove()});
+    holder.appendChild(f);
+    document.getElementById('pg-load').remove();
+    scripts.forEach(function(s){var n=document.createElement('script'); [].forEach.call(s.attributes,function(at){n.setAttribute(at.name,at.value)}); n.text=s.textContent; holder.appendChild(n);});
+    if(location.hash){var el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView();}
+  }).catch(fail);
+})();
+</script>
+</body>
+</html>
